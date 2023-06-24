@@ -8,8 +8,8 @@ namespace API.Models
     [Table("tb_m_users")]
     public class Users
     {
-        [Key, Column("id_user", TypeName = "char(8)")]
-        public string UserId { get; set; }
+        [Key, Column("nip", TypeName = "char(8)")]
+        public string UserNIP { get; set; }
 
         [Column("username", TypeName = "varchar(255)")]
         public string Username { get; set; }

@@ -201,9 +201,9 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Users", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<string>("UserNIP")
                         .HasColumnType("char(8)")
-                        .HasColumnName("id_user");
+                        .HasColumnName("nip");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -234,7 +234,7 @@ namespace API.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("username");
 
-                    b.HasKey("UserId");
+                    b.HasKey("UserNIP");
 
                     b.HasIndex("UserRoles");
 

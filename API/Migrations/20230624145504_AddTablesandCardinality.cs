@@ -70,7 +70,7 @@ namespace API.Migrations
                 name: "tb_m_users",
                 columns: table => new
                 {
-                    id_user = table.Column<string>(type: "char(8)", nullable: false),
+                    nip = table.Column<string>(type: "char(8)", nullable: false),
                     username = table.Column<string>(type: "varchar(255)", nullable: false),
                     password = table.Column<string>(type: "varchar(255)", nullable: false),
                     full_name = table.Column<string>(type: "varchar(50)", nullable: false),
@@ -81,7 +81,7 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_m_users", x => x.id_user);
+                    table.PrimaryKey("PK_tb_m_users", x => x.nip);
                     table.ForeignKey(
                         name: "FK_tb_m_users_Roles_RolesId",
                         column: x => x.RolesId,
