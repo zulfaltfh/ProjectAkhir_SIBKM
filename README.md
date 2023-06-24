@@ -2,9 +2,9 @@
 
 =========================================================
 
-Topic project akhir : Sistem Informasi Persediaan Barang
-Framework : ASP .NET
-Bahasa Pemrograman : C#
+- Topic project akhir : Sistem Informasi Persediaan Barang
+- Framework : ASP .NET
+- Bahasa Pemrograman : C#
 
 =========================================================
 
