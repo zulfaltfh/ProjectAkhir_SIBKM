@@ -14,7 +14,7 @@ namespace API.Models
         public DateTime TanggalKeluar { get; set; }
 
         [Column("nama_pembeli", TypeName ="varchar(50)")]
-        public int Pembeli { get; set; }
+        public string Pembeli { get; set; }
 
         //Cardinality
         [JsonIgnore]

@@ -96,13 +96,6 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.DetailBarMasuk", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id_detail_masuk");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("IdMasuk")
                         .HasColumnType("int")
                         .HasColumnName("id_masuk");
@@ -116,24 +109,22 @@ namespace API.Migrations
                         .HasColumnType("varchar(10)")
                         .HasColumnName("kd_barang");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserNIP")
+                        .IsRequired()
+                        .HasColumnType("char(8)")
+                        .HasColumnName("nip_employee");
 
-                    b.HasIndex("IdMasuk");
+                    b.HasKey("IdMasuk");
 
                     b.HasIndex("KodeBarang");
+
+                    b.HasIndex("UserNIP");
 
                     b.ToTable("tb_tr_detail_barang_masuk");
                 });
 
             modelBuilder.Entity("API.Models.DetailBarkeluar", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id_detail_keluar");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("IdKeluar")
                         .HasColumnType("int")
                         .HasColumnName("id_keluar");
@@ -147,11 +138,16 @@ namespace API.Migrations
                         .HasColumnType("varchar(10)")
                         .HasColumnName("kd_barang");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserNIP")
+                        .IsRequired()
+                        .HasColumnType("char(8)")
+                        .HasColumnName("nip_employee");
 
-                    b.HasIndex("IdKeluar");
+                    b.HasKey("IdKeluar");
 
                     b.HasIndex("KodeBarang");
+
+                    b.HasIndex("UserNIP");
 
                     b.ToTable("tb_tr_detail_barang_keluar");
                 });
@@ -225,10 +221,6 @@ namespace API.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("no_telepon");
 
-                    b.Property<int>("UserRoles")
-                        .HasColumnType("int")
-                        .HasColumnName("roles");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("varchar(255)")
@@ -236,9 +228,34 @@ namespace API.Migrations
 
                     b.HasKey("UserNIP");
 
-                    b.HasIndex("UserRoles");
-
                     b.ToTable("tb_m_users");
+                });
+
+            modelBuilder.Entity("API.Models.UsersRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int")
+                        .HasColumnName("role_id");
+
+                    b.Property<string>("UserNIP")
+                        .IsRequired()
+                        .HasColumnType("char(8)")
+                        .HasColumnName("user_nip");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserNIP");
+
+                    b.ToTable("UsersRoles");
                 });
 
             modelBuilder.Entity("API.Models.BarangMasuk", b =>
@@ -266,9 +283,17 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("API.Models.Users", "Users")
+                        .WithMany("DetailBarMasuk")
+                        .HasForeignKey("UserNIP")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Barang");
 
                     b.Navigation("BarangMasuk");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("API.Models.DetailBarkeluar", b =>
@@ -285,20 +310,36 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("API.Models.Users", "Users")
+                        .WithMany("DetailBarkeluar")
+                        .HasForeignKey("UserNIP")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Barang");
 
                     b.Navigation("BarangKeluar");
+
+                    b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("API.Models.Users", b =>
+            modelBuilder.Entity("API.Models.UsersRole", b =>
                 {
                     b.HasOne("API.Models.Roles", "Roles")
-                        .WithMany("Users")
-                        .HasForeignKey("UserRoles")
+                        .WithMany("UsersRole")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Users", "Users")
+                        .WithMany("UsersRole")
+                        .HasForeignKey("UserNIP")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Roles");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("API.Models.Barang", b =>
@@ -320,12 +361,21 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Roles", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("UsersRole");
                 });
 
             modelBuilder.Entity("API.Models.Supplier", b =>
                 {
                     b.Navigation("BarangMasuk");
+                });
+
+            modelBuilder.Entity("API.Models.Users", b =>
+                {
+                    b.Navigation("DetailBarMasuk");
+
+                    b.Navigation("DetailBarkeluar");
+
+                    b.Navigation("UsersRole");
                 });
 #pragma warning restore 612, 618
         }

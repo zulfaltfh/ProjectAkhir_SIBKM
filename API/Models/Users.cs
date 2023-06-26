@@ -26,12 +26,12 @@ namespace API.Models
         [Column("no_telepon", TypeName = "varchar(50)")]
         public string PhoneNumber { get; set; }
 
-        [Column("roles")]
-        public int UserRoles { get; set; }
-
-
         //cardinality
         [JsonIgnore]
-        public Roles Roles { get; set; }
+        public ICollection<UsersRole> UsersRole { get; set; }
+        [JsonIgnore]
+        public ICollection<DetailBarkeluar> DetailBarkeluar { get; set; }
+        [JsonIgnore]
+        public ICollection<DetailBarMasuk> DetailBarMasuk { get; set; }
     }
 }

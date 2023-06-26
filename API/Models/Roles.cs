@@ -16,6 +16,6 @@ namespace API.Models
 
         //cardinality
         [JsonIgnore]
-        public ICollection<Users> Users { get; set; }
+        public ICollection<UsersRole> UsersRole { get; set; }
     }
 }
