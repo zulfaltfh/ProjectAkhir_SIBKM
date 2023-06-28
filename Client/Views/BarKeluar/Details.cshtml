@@ -1,0 +1,54 @@
+﻿@model API_New.Models.BarangKeluar
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>BarangKeluar</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TanggalKeluar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TanggalKeluar)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KodeBarang)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KodeBarang)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Jumlah)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Jumlah)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pembeli)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pembeli)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserNIP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserNIP)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
+    <a asp-action="Index">Back to List</a>
+</div>

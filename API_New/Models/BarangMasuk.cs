@@ -14,15 +14,26 @@ namespace API_New.Models
         [Column("tanggal_masuk", TypeName = "datetime")]
         public DateTime TanggalMasuk { get; set; }
 
+        [Column("kd_barang", TypeName = "varchar(10)")]
+        public string KodeBarang { get; set; }
+
+        [Column("jumlah")]
+        public int Jumlah { get; set; }
+
         [Column("id_supplier")]
         public int IdSuppllier { get; set; }
+
+        [Column("user_nip", TypeName = "char(8)")]
+        public string UserNIP { get; set; }
 
 
         //Cardinality
         [JsonIgnore]
-        public ICollection<DetailBarMasuk> DetailBarMasuk { get; set; }
-        [JsonIgnore]
         public Supplier? Supplier { get; set; }
+        [JsonIgnore]
+        public Barang? Barang { get; set; }
+        [JsonIgnore]
+        public Users? Users { get; set; }
 
     }
 }

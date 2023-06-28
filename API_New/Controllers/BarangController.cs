@@ -10,7 +10,6 @@ namespace API_New.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
     public class BarangController : GeneralController<IBarangRepository, Barang, string>
     {
         public BarangController(

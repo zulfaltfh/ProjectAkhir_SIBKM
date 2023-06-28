@@ -22,8 +22,8 @@ namespace API_New.Models
 
         //Cardinality
         [JsonIgnore]
-        public ICollection<DetailBarMasuk>? DetailBarMasuk { get; set; }
+        public ICollection<BarangKeluar>? BarangKeluar { get; set; }
         [JsonIgnore]
-        public ICollection<DetailBarkeluar>? DetailBarkeluar { get; set; }
+        public ICollection<BarangMasuk>? BarangMasuk { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace API_New.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
     public class SupplierController : GeneralController<ISupplierRepository, Supplier, int>
     {
         public SupplierController(

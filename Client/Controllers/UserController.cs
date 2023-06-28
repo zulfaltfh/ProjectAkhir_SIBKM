@@ -1,9 +1,9 @@
 ﻿using API_New.Models;
+using API_New.ViewModels;
 using Client.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Core.Types;
-using System.Diagnostics;
 
 namespace Client.Controllers
 {
@@ -30,33 +30,65 @@ namespace Client.Controllers
         }
 
         /*
+         * LOGIN
+         */
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM login)
+        {
+            var results = await _userRepository.Login(login);
+            if (results.Code == 200)
+            {
+                HttpContext.Session.SetString("JWToken", results.Data);
+                return RedirectToAction("Index", "Home");
+            }
+            else if (results.Code == 409)
+            {
+                ModelState.AddModelError(string.Empty, results.Message);
+                return View();
+            }
+            return View();
+        }
+
+        [HttpGet("/Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return Redirect("/User/Login");
+        }
+
+        /*
          -- registrasi
          -- untuk httpget alias untuk menampilkan tampilan form
          */
-        //[HttpGet]
-        //public IActionResult Register()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Register(Users user)
-        //{
-        //    var result = await _userRepository.Post(user);
-        //    if (result.Code == 200)
-        //    {
-        //        TempData["Success"] = "Data berhasil masuk";
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    else if (result.Code == 409)
-        //    {
-        //        ModelState.AddModelError(string.Empty, result.Message);
-        //        return View();
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVM register)
+        {
+            var result = await _userRepository.Register(register);
+            if (result.Code == 200)
+            {
+                TempData["Success"] = "Data berhasil masuk";
+                return Redirect("/User/Login");
+            }
+            else if (result.Code == 409)
+            {
+                ModelState.AddModelError(string.Empty, result.Message);
+                return View();
+            }
 
-        //    return View();
-        //}
+            return View();
+        }
 
         /*
          -- create
@@ -125,6 +157,51 @@ namespace Client.Controllers
                 user.PhoneNumber = Results.Data.PhoneNumber;
             }
             return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Users users)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _userRepository.Put(users.UserNIP, users);
+                if (result.Code == 200)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else if (result.Code == 500)
+                {
+                    ModelState.AddModelError(string.Empty, result.Message);
+                    return View();
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var result = await _userRepository.Get(id);
+            var user = result?.Data;
+
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Remove(string id)
+        {
+            var result = await _userRepository.Delete(id);
+            if (result.Code == 200)
+            {
+                TempData["Success"] = "Data berhasil dihapus";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var user = await _userRepository.Get(id);
+            return View("Delete", user?.Data);
         }
     }
 }

@@ -8,11 +8,13 @@ namespace Client.Repository
     public class UserRepository
     {
         private readonly string request;
+        private readonly HttpContextAccessor contextAccessor;
         private HttpClient httpClient;
 
         public UserRepository(string request = "User/")
         {
             this.request = request;
+            contextAccessor = new HttpContextAccessor();
             httpClient = new HttpClient
             {
                 BaseAddress = new Uri("https://localhost:7209/api/")
@@ -81,7 +83,7 @@ namespace Client.Repository
         }
 
         //Put - Edit
-        public async Task<ResponseDataVM<string>> Put(string id, Users users)
+        public async Task<ResponseDataVM<string>> Put(string UserNIP, Users users)
         {
             ResponseDataVM<string> entityVM = null;
             StringContent content = new StringContent(JsonConvert.SerializeObject(users), Encoding.UTF8, "application/json");

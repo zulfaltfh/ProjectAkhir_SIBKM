@@ -15,6 +15,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<BarangRepository>();
 builder.Services.AddScoped<SupplierRepository>();
+builder.Services.AddScoped<BarKeluarRepository>();
+builder.Services.AddScoped<BarMasukRepository>();
 
 // Configure JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -63,17 +65,17 @@ app.UseStatusCodePages(async context => {
 app.UseSession();
 
 //Add JWToken to all incoming HTTP Request Header
-//app.Use(async (context, next) =>
-//{
-//    var JWToken = context.Session.GetString("JWToken");
+app.Use(async (context, next) =>
+{
+    var JWToken = context.Session.GetString("JWToken");
 
-//    if (!string.IsNullOrEmpty(JWToken))
-//    {
-//        context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
-//    }
+    if (!string.IsNullOrEmpty(JWToken))
+    {
+        context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
+    }
 
-//    await next();
-//});
+    await next();
+});
 
 app.UseAuthentication();
 

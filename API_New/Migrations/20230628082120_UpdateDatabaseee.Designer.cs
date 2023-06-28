@@ -4,6 +4,7 @@ using API_New.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API_New.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230628082120_UpdateDatabaseee")]
+    partial class UpdateDatabaseee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace API_New.Migrations
 
                     b.HasKey("KodeBarang");
 
-                    b.ToTable("tb_m_barang", (string)null);
+                    b.ToTable("tb_m_barang");
                 });
 
             modelBuilder.Entity("API_New.Models.BarangKeluar", b =>
@@ -74,18 +77,11 @@ namespace API_New.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("tanggal_keluar");
 
-                    b.Property<string>("UserNIP")
-                        .IsRequired()
-                        .HasColumnType("char(8)")
-                        .HasColumnName("user_nip");
-
                     b.HasKey("Id");
 
                     b.HasIndex("KodeBarang");
 
-                    b.HasIndex("UserNIP");
-
-                    b.ToTable("tb_tr_barang_keluar", (string)null);
+                    b.ToTable("tb_tr_barang_keluar");
                 });
 
             modelBuilder.Entity("API_New.Models.BarangMasuk", b =>
@@ -114,20 +110,13 @@ namespace API_New.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("tanggal_masuk");
 
-                    b.Property<string>("UserNIP")
-                        .IsRequired()
-                        .HasColumnType("char(8)")
-                        .HasColumnName("user_nip");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IdSuppllier");
 
                     b.HasIndex("KodeBarang");
 
-                    b.HasIndex("UserNIP");
-
-                    b.ToTable("tb_tr_barang_masuk", (string)null);
+                    b.ToTable("tb_tr_barang_masuk");
                 });
 
             modelBuilder.Entity("API_New.Models.Roles", b =>
@@ -146,7 +135,7 @@ namespace API_New.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tb_m_roles", (string)null);
+                    b.ToTable("tb_m_roles");
                 });
 
             modelBuilder.Entity("API_New.Models.Supplier", b =>
@@ -170,7 +159,7 @@ namespace API_New.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tb_m_supplier", (string)null);
+                    b.ToTable("tb_m_supplier");
                 });
 
             modelBuilder.Entity("API_New.Models.Users", b =>
@@ -206,7 +195,7 @@ namespace API_New.Migrations
 
                     b.HasKey("UserNIP");
 
-                    b.ToTable("tb_m_users", (string)null);
+                    b.ToTable("tb_m_users");
                 });
 
             modelBuilder.Entity("API_New.Models.UsersRole", b =>
@@ -233,7 +222,7 @@ namespace API_New.Migrations
 
                     b.HasIndex("UserNIP");
 
-                    b.ToTable("UsersRoles", (string)null);
+                    b.ToTable("UsersRoles");
                 });
 
             modelBuilder.Entity("API_New.Models.BarangKeluar", b =>
@@ -244,15 +233,7 @@ namespace API_New.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("API_New.Models.Users", "Users")
-                        .WithMany("BarangKeluar")
-                        .HasForeignKey("UserNIP")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Barang");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("API_New.Models.BarangMasuk", b =>
@@ -269,17 +250,9 @@ namespace API_New.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("API_New.Models.Users", "Users")
-                        .WithMany("BarangMasuk")
-                        .HasForeignKey("UserNIP")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Barang");
 
                     b.Navigation("Supplier");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("API_New.Models.UsersRole", b =>
@@ -320,10 +293,6 @@ namespace API_New.Migrations
 
             modelBuilder.Entity("API_New.Models.Users", b =>
                 {
-                    b.Navigation("BarangKeluar");
-
-                    b.Navigation("BarangMasuk");
-
                     b.Navigation("UsersRole");
                 });
 #pragma warning restore 612, 618

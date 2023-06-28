@@ -4,6 +4,7 @@ using API_New.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API_New.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230628135530_UpdateRelasiTabel")]
+    partial class UpdateRelasiTabel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace API_New.Migrations
 
                     b.HasKey("KodeBarang");
 
-                    b.ToTable("tb_m_barang", (string)null);
+                    b.ToTable("tb_m_barang");
                 });
 
             modelBuilder.Entity("API_New.Models.BarangKeluar", b =>
@@ -85,7 +88,7 @@ namespace API_New.Migrations
 
                     b.HasIndex("UserNIP");
 
-                    b.ToTable("tb_tr_barang_keluar", (string)null);
+                    b.ToTable("tb_tr_barang_keluar");
                 });
 
             modelBuilder.Entity("API_New.Models.BarangMasuk", b =>
@@ -127,7 +130,7 @@ namespace API_New.Migrations
 
                     b.HasIndex("UserNIP");
 
-                    b.ToTable("tb_tr_barang_masuk", (string)null);
+                    b.ToTable("tb_tr_barang_masuk");
                 });
 
             modelBuilder.Entity("API_New.Models.Roles", b =>
@@ -146,7 +149,7 @@ namespace API_New.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tb_m_roles", (string)null);
+                    b.ToTable("tb_m_roles");
                 });
 
             modelBuilder.Entity("API_New.Models.Supplier", b =>
@@ -170,7 +173,7 @@ namespace API_New.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tb_m_supplier", (string)null);
+                    b.ToTable("tb_m_supplier");
                 });
 
             modelBuilder.Entity("API_New.Models.Users", b =>
@@ -206,7 +209,7 @@ namespace API_New.Migrations
 
                     b.HasKey("UserNIP");
 
-                    b.ToTable("tb_m_users", (string)null);
+                    b.ToTable("tb_m_users");
                 });
 
             modelBuilder.Entity("API_New.Models.UsersRole", b =>
@@ -233,7 +236,7 @@ namespace API_New.Migrations
 
                     b.HasIndex("UserNIP");
 
-                    b.ToTable("UsersRoles", (string)null);
+                    b.ToTable("UsersRoles");
                 });
 
             modelBuilder.Entity("API_New.Models.BarangKeluar", b =>

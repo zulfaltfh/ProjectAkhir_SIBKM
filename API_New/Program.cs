@@ -27,8 +27,8 @@ builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
 builder.Services.AddScoped<IBarangRepository, BarangRepository>();
 builder.Services.AddScoped<IBarangMasukRepository, BarMasukRepository>();
 builder.Services.AddScoped<IBarangKeluarRepository, BarKeluarRepository>();
-builder.Services.AddScoped<IDetBarKeluarRepository, DetBarKeluarRepository>();
-builder.Services.AddScoped<IDetBarMasukRepository, DetBarMasukRepository>();
+//builder.Services.AddScoped<IDetBarKeluarRepository, DetBarKeluarRepository>();
+//builder.Services.AddScoped<IDetBarMasukRepository, DetBarMasukRepository>();
 
 //Service untuk Token
 builder.Services.AddTransient<ITokenService, TokenService>();

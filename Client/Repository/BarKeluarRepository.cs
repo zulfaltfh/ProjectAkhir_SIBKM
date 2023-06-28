@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Client.Repository
 {
-    public class BarangRepository
+    public class BarKeluarRepository
     {
         private readonly string request;
         private readonly HttpContextAccessor contextAccessor;
         private HttpClient httpClient;
 
-        public BarangRepository(string request = "Barang/")
+        public BarKeluarRepository(string request = "BarangKeluar/")
         {
             this.request = request;
             contextAccessor = new HttpContextAccessor();
@@ -22,32 +22,32 @@ namespace Client.Repository
         }
 
         //Get All
-        public async Task<ResponseDataVM<List<Barang>>> Get()
+        public async Task<ResponseDataVM<List<BarangKeluar>>> Get()
         {
-            ResponseDataVM<List<Barang>> entityVM = null;
+            ResponseDataVM<List<BarangKeluar>> entityVM = null;
             using (var response = await httpClient.GetAsync(request))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                entityVM = JsonConvert.DeserializeObject<ResponseDataVM<List<Barang>>>(apiResponse);
+                entityVM = JsonConvert.DeserializeObject<ResponseDataVM<List<BarangKeluar>>>(apiResponse);
             }
             return entityVM;
         }
 
-        //Get by KodeBarang
-        public async Task<ResponseDataVM<Barang>> Get(string id)
+        //Get by Id
+        public async Task<ResponseDataVM<BarangKeluar>> Get(int id)
         {
-            ResponseDataVM<Barang> entity = null;
+            ResponseDataVM<BarangKeluar> entity = null;
 
             using (var response = await httpClient.GetAsync(request + id))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                entity = JsonConvert.DeserializeObject<ResponseDataVM<Barang>>(apiResponse);
+                entity = JsonConvert.DeserializeObject<ResponseDataVM<BarangKeluar>>(apiResponse);
             }
             return entity;
         }
 
         //Post - Create
-        public async Task<ResponseDataVM<string>> Post(Barang barang)
+        public async Task<ResponseDataVM<string>> Post(BarangKeluar barang)
         {
             ResponseDataVM<string> entityVM = null;
             StringContent content = new StringContent(JsonConvert.SerializeObject(barang), Encoding.UTF8, "application/json");
@@ -60,7 +60,7 @@ namespace Client.Repository
         }
 
         //Put - Edit
-        public async Task<ResponseDataVM<string>> Put(string id, Barang barang)
+        public async Task<ResponseDataVM<string>> Put(int id, BarangKeluar barang)
         {
             ResponseDataVM<string> entityVM = null;
             StringContent content = new StringContent(JsonConvert.SerializeObject(barang), Encoding.UTF8, "application/json");
@@ -73,14 +73,14 @@ namespace Client.Repository
         }
 
         //Delete
-        public async Task<ResponseDataVM<Barang>> Delete(string id)
+        public async Task<ResponseDataVM<BarangKeluar>> Delete(int id)
         {
-            ResponseDataVM<Barang> entity = null;
+            ResponseDataVM<BarangKeluar> entity = null;
 
             using (var response = await httpClient.DeleteAsync(request + id))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                entity = JsonConvert.DeserializeObject<ResponseDataVM<Barang>>(apiResponse);
+                entity = JsonConvert.DeserializeObject<ResponseDataVM<BarangKeluar>>(apiResponse);
             }
             return entity;
         }

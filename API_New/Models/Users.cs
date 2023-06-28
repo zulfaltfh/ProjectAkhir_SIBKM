@@ -30,8 +30,8 @@ namespace API_New.Models
         [JsonIgnore]
         public ICollection<UsersRole>? UsersRole { get; set; }
         [JsonIgnore]
-        public ICollection<DetailBarkeluar>? DetailBarkeluar { get; set; }
+        public ICollection<BarangKeluar>? BarangKeluar { get; set; }
         [JsonIgnore]
-        public ICollection<DetailBarMasuk>? DetailBarMasuk { get; set; }
+        public ICollection<BarangMasuk>? BarangMasuk { get; set; }
     }
 }

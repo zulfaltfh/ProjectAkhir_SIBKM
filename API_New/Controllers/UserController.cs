@@ -13,7 +13,6 @@ namespace API_New.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
     public class UserController : GeneralController<IUsersRepository, Users, string>
     {
         //private readonly IUsersRepository _usersRepository;
