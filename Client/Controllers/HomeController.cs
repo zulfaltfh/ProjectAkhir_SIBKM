@@ -1,4 +1,7 @@
-﻿using Client.Models;
+﻿using API_New.Models;
+using Client.Models;
+using Client.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -11,6 +14,13 @@ namespace Client.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+
+        [AllowAnonymous]
+        [HttpGet("/Unauthorized")]
+        public IActionResult Unauthorized()
+        {
+            return View("401");
         }
 
         public IActionResult Index()

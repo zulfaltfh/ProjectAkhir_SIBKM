@@ -58,7 +58,7 @@ namespace API_New.Migrations
 
                     b.Property<string>("Pembeli")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
+                        .HasColumnType("varchar(255)")
                         .HasColumnName("nama_pembeli");
 
                     b.Property<DateTime>("TanggalKeluar")
@@ -98,7 +98,7 @@ namespace API_New.Migrations
                 {
                     b.Property<int>("IdMasuk")
                         .HasColumnType("int")
-                        .HasColumnName("id_masuk");
+                        .HasColumnName("id_barang_masuk");
 
                     b.Property<int>("JumlahMasuk")
                         .HasColumnType("int")
@@ -112,7 +112,7 @@ namespace API_New.Migrations
                     b.Property<string>("UserNIP")
                         .IsRequired()
                         .HasColumnType("char(8)")
-                        .HasColumnName("nip_employee");
+                        .HasColumnName("nip_user");
 
                     b.HasKey("IdMasuk");
 
@@ -127,7 +127,7 @@ namespace API_New.Migrations
                 {
                     b.Property<int>("IdKeluar")
                         .HasColumnType("int")
-                        .HasColumnName("id_keluar");
+                        .HasColumnName("id_barang_keluar");
 
                     b.Property<int>("JumlahKeluar")
                         .HasColumnType("int")
@@ -141,7 +141,7 @@ namespace API_New.Migrations
                     b.Property<string>("UserNIP")
                         .IsRequired()
                         .HasColumnType("char(8)")
-                        .HasColumnName("nip_employee");
+                        .HasColumnName("nip_user");
 
                     b.HasKey("IdKeluar");
 
@@ -176,7 +176,7 @@ namespace API_New.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id_supplier");
+                        .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
@@ -208,22 +208,22 @@ namespace API_New.Migrations
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
+                        .HasColumnType("varchar(255)")
                         .HasColumnName("full_name");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("varchar(10)")
                         .HasColumnName("password");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
+                        .HasColumnType("varchar(12)")
                         .HasColumnName("no_telepon");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("varchar(20)")
                         .HasColumnName("username");
 
                     b.HasKey("UserNIP");
@@ -255,7 +255,7 @@ namespace API_New.Migrations
 
                     b.HasIndex("UserNIP");
 
-                    b.ToTable("UsersRoles");
+                    b.ToTable("tb_tr_usersRole");
                 });
 
             modelBuilder.Entity("API_New.Models.BarangMasuk", b =>
