@@ -21,18 +21,14 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#tabelBarang').DataTable({
+    $('#tabelSupplier').DataTable({
     ajax: {
-        url: "/api/Barang",
+        url: "/api/Supplier",
         dataSrc: "",
     },
     columns: [{data:"Id"},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
+              {data:"Name"},
+              {data:"NoTelp"},
              ]
     });
 });
