@@ -6,26 +6,24 @@
 
 //ready function --> fungsi yang dijalankan jika browser selesai ter-load
 $(document).ready(function () {
-    $('#tabelBarMasuk').DataTable({
+    $('#tabelUser').DataTable({
     ajax: {
-        url: "/api/BarMasuk",
+        url: "/api/User",
         dataSrc: "",
     },
-    columns: [{data:"Id"},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
+    columns: [{data:"UserNIP"},
+              {data:"Username"},
+              {data:"FullName"},
+              {data:"Email"},
+              {data:"PhoneNumbe},
              ]
     });
 });
 
 $(document).ready(function () {
-    $('#tabelBarKeluar').DataTable({
+    $('#tabelBarang').DataTable({
     ajax: {
-        url: "/api/BarKeluar",
+        url: "/api/Barang",
         dataSrc: "",
     },
     columns: [{data:"Id"},
