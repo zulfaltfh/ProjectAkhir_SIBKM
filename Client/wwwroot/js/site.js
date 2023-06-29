@@ -6,13 +6,53 @@
 
 //ready function --> fungsi yang dijalankan jika browser selesai ter-load
 $(document).ready(function () {
-
-});
-
-$('#myTable').DataTable({
+    $('#tabelBarMasuk').DataTable({
     ajax: {
-        url: '/api/myData',
-        dataSrc: 'staff'
+        url: "/api/BarMasuk",
+        dataSrc: "",
     },
-    columns: [...]
+    columns: [{data:"Id"},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+             ]
+    });
 });
+
+$(document).ready(function () {
+    $('#tabelBarKeluar').DataTable({
+    ajax: {
+        url: "/api/BarKeluar",
+        dataSrc: "",
+    },
+    columns: [{data:"Id"},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+             ]
+    });
+});
+
+$(document).ready(function () {
+    $('#tabelBarMasuk').DataTable({
+    ajax: {
+        url: "/api/BarMasuk",
+        dataSrc: "",
+    },
+    columns: [{data:"Id"},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+              {data:""},
+             ]
+    });
+});
+
