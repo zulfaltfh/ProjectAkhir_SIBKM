@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="tableSupplier>
     <thead>
         <tr>
             <th>
@@ -51,3 +51,6 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+@section site{
+     <script src="~/js/site.js" ></script>
+ }
