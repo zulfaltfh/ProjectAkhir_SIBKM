@@ -151,7 +151,6 @@ namespace Client.Controllers
             {
                 user.UserNIP = Results.Data.UserNIP;
                 user.Username = Results.Data.Username;
-                user.Password = Results.Data.Password;
                 user.FullName = Results.Data.FullName;
                 user.Email = Results.Data.Email;
                 user.PhoneNumber = Results.Data.PhoneNumber;

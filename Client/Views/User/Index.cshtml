@@ -7,28 +7,28 @@
 <h1>Data User</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserNIP)
+                NIP
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Username)
+                Username
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Password)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                Nama Lengkap
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                No Telepon
             </th>
             <th></th>
         </tr>
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.UserNIP }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.UserNIP }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.UserNIP })
+                    @Html.ActionLink("Edit", "Edit", new { id=item.UserNIP }, new { @class="btn btn-warning btn-sm me-2" })
+                    @Html.ActionLink("Details", "Details", new { id=item.UserNIP }, new { @class="btn btn-info btn-sm me-2" })
+                    @Html.ActionLink("Delete", "Delete", new { id=item.UserNIP }, new { @class="btn btn-danger btn-sm" })
             </td>
         </tr>
 }

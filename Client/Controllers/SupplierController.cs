@@ -1,10 +1,12 @@
 ﻿using API_New.Models;
 using Client.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Core.Types;
 
 namespace Client.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SupplierController : Controller
     {
         private readonly SupplierRepository _supplierRepository;

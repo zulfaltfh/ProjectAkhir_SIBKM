@@ -1,10 +1,12 @@
 ﻿using API_New.Models;
 using Client.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Core.Types;
 
 namespace Client.Controllers
 {
+    [Authorize]
     public class BarMasukController : Controller
     {
         private readonly BarMasukRepository _barMasukRepository;
