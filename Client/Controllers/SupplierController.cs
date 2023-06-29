@@ -89,9 +89,10 @@ namespace Client.Controllers
             }
             else
             {
-                supplier.Id = Results.Data.Id;
                 supplier.Name
                     = Results.Data.Name;
+                supplier.NoTelp
+                    = Results.Data.NoTelp;
             }
             return View(supplier);
         }

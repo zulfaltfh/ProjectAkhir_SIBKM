@@ -11,7 +11,7 @@ namespace Client.Repository
         private readonly HttpContextAccessor contextAccessor;
         private HttpClient httpClient;
 
-        public BarKeluarRepository(string request = "BarangKeluar/")
+        public BarKeluarRepository(string request = "BarKeluar/")
         {
             this.request = request;
             contextAccessor = new HttpContextAccessor();

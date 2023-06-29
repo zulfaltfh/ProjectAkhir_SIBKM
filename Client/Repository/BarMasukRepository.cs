@@ -11,7 +11,7 @@ namespace Client.Repository
         private readonly HttpContextAccessor contextAccessor;
         private HttpClient httpClient;
 
-        public BarMasukRepository(string request = "BarangMasuk/")
+        public BarMasukRepository(string request = "BarMasuk/")
         {
             this.request = request;
             contextAccessor = new HttpContextAccessor();
@@ -47,10 +47,10 @@ namespace Client.Repository
         }
 
         //Post - Create
-        public async Task<ResponseDataVM<string>> Post(BarangMasuk barang)
+        public async Task<ResponseDataVM<string>> Post(BarangMasuk barMasuk)
         {
             ResponseDataVM<string> entityVM = null;
-            StringContent content = new StringContent(JsonConvert.SerializeObject(barang), Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(barMasuk), Encoding.UTF8, "application/json");
             using (var response = httpClient.PostAsync(request, content).Result)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
@@ -60,10 +60,10 @@ namespace Client.Repository
         }
 
         //Put - Edit
-        public async Task<ResponseDataVM<string>> Put(int id, BarangMasuk barang)
+        public async Task<ResponseDataVM<string>> Put(int id, BarangMasuk barMasuk)
         {
             ResponseDataVM<string> entityVM = null;
-            StringContent content = new StringContent(JsonConvert.SerializeObject(barang), Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(barMasuk), Encoding.UTF8, "application/json");
             using (var response = httpClient.PutAsync(request, content).Result)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();

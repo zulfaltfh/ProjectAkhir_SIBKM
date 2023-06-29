@@ -7,16 +7,16 @@ namespace Client.Controllers
 {
     public class BarMasukController : Controller
     {
-        private readonly BarMasukRepository repository;
+        private readonly BarMasukRepository _barMasukRepository;
 
         public BarMasukController(BarMasukRepository barMasukRepository)
         {
-            repository = barMasukRepository;
+            _barMasukRepository = barMasukRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            var Results = await repository.Get();
+            var Results = await _barMasukRepository.Get();
             var barMasuk = new List<BarangMasuk>();
 
             if (Results != null)
@@ -43,9 +43,9 @@ namespace Client.Controllers
          */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(BarangMasuk barMasuk)
+        public async Task<IActionResult> Create(BarangMasuk barangMasuk)
         {
-            var result = await repository.Post(barMasuk);
+            var result = await _barMasukRepository.Post(barangMasuk);
             if (result.Code == 200)
             {
                 TempData["Success"] = "Data berhasil masuk";
@@ -66,7 +66,7 @@ namespace Client.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var Results = await repository.Get(id);
+            var Results = await _barMasukRepository.Get(id);
             var barMasuk = Results.Data;
 
             //if (Results != null)
@@ -80,7 +80,7 @@ namespace Client.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var Results = await repository.Get(id);
+            var Results = await _barMasukRepository.Get(id);
             var barMasuk = new BarangMasuk();
 
             if (Results.Data?.Id is null)
@@ -89,7 +89,6 @@ namespace Client.Controllers
             }
             else
             {
-                barMasuk.Id = Results.Data.Id;
                 barMasuk.TanggalMasuk = Results.Data.TanggalMasuk;
                 barMasuk.KodeBarang = Results.Data.KodeBarang;
                 barMasuk.Jumlah = Results.Data.Jumlah;
@@ -105,12 +104,11 @@ namespace Client.Controllers
          */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(BarangMasuk barMasuk)
+        public async Task<IActionResult> Edit(BarangMasuk barangMasuk)
         {
             if (ModelState.IsValid)
             {
-                var result = await repository
-                    .Put(barMasuk.Id, barMasuk);
+                var result = await _barMasukRepository.Put(barangMasuk.Id, barangMasuk);
                 if (result.Code == 200)
                 {
                     return RedirectToAction(nameof(Index));
@@ -128,25 +126,25 @@ namespace Client.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await repository.Get(id);
-            var barMasuk = result?.Data;
+            var result = await _barMasukRepository.Get(id);
+            var barangMasuk = result?.Data;
 
-            return View(barMasuk);
+            return View(barangMasuk);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(int id)
         {
-            var result = await repository.Delete(id);
+            var result = await _barMasukRepository.Delete(id);
             if (result.Code == 200)
             {
                 TempData["Success"] = "Data berhasil dihapus";
                 return RedirectToAction(nameof(Index));
             }
 
-            var barMasuk = await repository.Get(id);
-            return View("Delete", barMasuk?.Data);
+            var barangMasuk = await _barMasukRepository.Get(id);
+            return View("Delete", barangMasuk?.Data);
         }
     }
 }
