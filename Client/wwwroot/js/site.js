@@ -6,7 +6,7 @@
 
 //ready function --> fungsi yang dijalankan jika browser selesai ter-load
 $(document).ready(function () {
-    $('#tabelUser').DataTable({
+    $('#tableUser').DataTable({
     ajax: {
         url: "/api/User",
         dataSrc: "",
@@ -21,7 +21,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#tabelSupplier').DataTable({
+    $('#tableSupplier').DataTable({
     ajax: {
         url: "/api/Supplier",
         dataSrc: "",
@@ -34,18 +34,15 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#tabelBarMasuk').DataTable({
+    $('#tableBarang').DataTable({
     ajax: {
-        url: "/api/BarMasuk",
+        url: "/api/Barang",
         dataSrc: "",
     },
-    columns: [{data:"Id"},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
-              {data:""},
+    columns: [{data:"KodeBarang"},
+              {data:"NamaBarang"},
+              {data:"JenisBarang"},
+              {data:"Stock"},
              ]
     });
 });
