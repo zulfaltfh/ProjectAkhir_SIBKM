@@ -8,8 +8,8 @@
 $(document).ready(function () {
     $('#tableUser').DataTable({
     ajax: {
-        url: "/api/User",
-        dataSrc: "",
+        url: "https://localhost:7209/api/User",
+        dataSrc: "data",
     },
     columns: [{data:"UserNIP"},
               {data:"Username"},
@@ -23,8 +23,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#tableSupplier').DataTable({
     ajax: {
-        url: "/api/Supplier",
-        dataSrc: "",
+        url: "https://localhost:7209/api/Supplier",
+        dataSrc: "data",
     },
     columns: [{data:"Id"},
               {data:"Name"},
@@ -36,8 +36,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#tableBarang').DataTable({
     ajax: {
-        url: "/api/Barang",
-        dataSrc: "",
+        url: "https://localhost:7209/api//Barang",
+        dataSrc: "data",
     },
     columns: [{data:"KodeBarang"},
               {data:"NamaBarang"},
