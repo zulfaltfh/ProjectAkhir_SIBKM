@@ -6,13 +6,43 @@
 
 //ready function --> fungsi yang dijalankan jika browser selesai ter-load
 $(document).ready(function () {
-
+    $('#tableUser').DataTable({
+        ajax: {
+            url: "https://localhost:7209/api/User/Index",
+            dataSrc: "",
+        },
+        columns: [{ data: "UserNIP" },
+        { data: "Username" },
+        { data: "FullName" },
+        { data: "Email" },
+        { data: "PhoneNumbe},
+             ]
+    });
 });
 
-$('#myTable').DataTable({
-    ajax: {
-        url: '/api/myData',
-        dataSrc: 'staff'
-    },
-    columns: [...]
+$(document).ready(function () {
+    $('#tableSupplier').DataTable({
+        ajax: {
+            url: "https://localhost:7209/api/Supplier/Index",
+            dataSrc: "",
+        },
+        columns: [{ data: "Id" },
+        { data: "Name" },
+        { data: "NoTelp" },
+        ]
+    });
+});
+
+$(document).ready(function () {
+    $('#tableBarang').DataTable({
+        ajax: {
+            url: "https://localhost:7209/api/Barang/Index",
+            dataSrc: "",
+        },
+        columns: [{ data: "KodeBarang" },
+        { data: "NamaBarang" },
+        { data: "JenisBarang" },
+        { data: "Stock" },
+        ]
+    });
 });

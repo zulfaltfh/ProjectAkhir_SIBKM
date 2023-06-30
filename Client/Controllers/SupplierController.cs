@@ -6,7 +6,6 @@ using NuGet.Protocol.Core.Types;
 
 namespace Client.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class SupplierController : Controller
     {
         private readonly SupplierRepository _supplierRepository;
@@ -33,6 +32,7 @@ namespace Client.Controllers
          -- create
          -- untuk httpget alias untuk menampilkan tampilan form
          */
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -43,6 +43,7 @@ namespace Client.Controllers
          -- create
          -- HttpPost untuk mengirimkan data yang diinputkan di form ke dalam database
          */
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Supplier supplier)
@@ -65,6 +66,7 @@ namespace Client.Controllers
         /*
          * Details --> get by id
          */
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
@@ -79,6 +81,7 @@ namespace Client.Controllers
             return View(barang);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -103,6 +106,7 @@ namespace Client.Controllers
          -- edit
          -- HttpPost 
          */
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Supplier supplier)
@@ -125,6 +129,7 @@ namespace Client.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -134,6 +139,7 @@ namespace Client.Controllers
             return View(supplier);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(int id)

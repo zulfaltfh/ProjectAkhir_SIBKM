@@ -9,7 +9,7 @@ namespace API_New.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    //[Authorize]
     public class RolesController : GeneralController<IRolesRepository, Roles, int>
     {
         public RolesController(

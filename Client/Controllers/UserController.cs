@@ -16,6 +16,7 @@ namespace Client.Controllers
             _userRepository = userRepository;
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var Results = await _userRepository.Get();
@@ -94,12 +95,14 @@ namespace Client.Controllers
          -- create
          -- untuk httpget alias untuk menampilkan tampilan form
          */
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles="Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Users user)
@@ -122,6 +125,7 @@ namespace Client.Controllers
         /*
          -- details - get by id
          */
+        [Authorize(Roles="Admin")]
         [HttpGet]
         public async Task<IActionResult> Details(string id)
         {
@@ -137,6 +141,7 @@ namespace Client.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
@@ -158,6 +163,7 @@ namespace Client.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Users users)
@@ -179,6 +185,7 @@ namespace Client.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Delete(string id)
         {
@@ -188,6 +195,7 @@ namespace Client.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(string id)
