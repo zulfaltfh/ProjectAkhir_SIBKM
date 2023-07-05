@@ -50,8 +50,9 @@ namespace API_New.Base
                 {
                     Code = StatusCodes.Status404NotFound,
                     Status = HttpStatusCode.NotFound.ToString(),
-                    Errors = "Id Not Found"
+                    Errors = "Id NOT Found"
                 });
+
 
             return Ok(new ResponseDataVM<TEntity>
             {
