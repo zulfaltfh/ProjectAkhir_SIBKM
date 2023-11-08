@@ -7,3 +7,9 @@
 - Bahasa Pemrograman : C#
 
 =========================================================
+
+Anggota Kelompok:
+1. Muhammad Jodi Wibawa
+2. Zulfa Lutfiah
+3. Saiman
+4. Ma'ruf Mubaroq
